@@ -1,0 +1,46 @@
+1)Array Insertion in java:
+
+import java.util.Arrays;
+public class Insertion {
+    public static void main(String[] args) {
+        int[] arr = {10, 20, 30, 40, 50};
+        int elementToInsert = 25;
+        int position = 2;  
+        int[] newArr = new int[arr.length + 1];
+        for (int i = 0; i < position; i++) {
+            newArr[i] = arr[i];
+        }
+        newArr[position] = elementToInsert;
+        for (int i = position; i < arr.length; i++) {
+            newArr[i + 1] = arr[i];
+        }
+        System.out.println(Arrays.toString(newArr));
+    }
+}
+
+
+2)Reversing an array:
+
+import java.util.Arrays;
+public class ReverseArray {
+	    public static void main(String[] args) {
+	        // Example array
+	        int[] arr = {1, 2, 3, 4, 5};
+	        reverseArray(arr);
+	        System.out.print("Reversed Array: ");
+	        for (int i : arr) {
+	            System.out.print(i + " ");
+	        }
+	    }
+	    public static void reverseArray(int[] arr) {
+	        int start = 0;
+	        int end = arr.length - 1;
+	        while (start < end) {
+	            int temp = arr[start];
+	            arr[start] = arr[end];
+	            arr[end] = temp;
+	            start++;
+	            end--;
+	        }
+	    }
+	}
