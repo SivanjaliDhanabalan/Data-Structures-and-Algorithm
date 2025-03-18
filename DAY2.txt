@@ -1,0 +1,77 @@
+1)Array Deletion:
+
+import java.util.Scanner;
+public class Deletion
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+int[] arr=new int[20];
+System.out.println("Enter the size of an array:");
+int size=s.nextInt();
+for(int i=0;i<size;i++)
+{
+arr[i]=s.nextInt();
+}
+for(int i=0;i<size;i++)
+{
+System.out.println(arr[i]);
+}
+System.out.println("Enter the position to delete:");
+int del=s.nextInt();
+for(int mypos=del-1;mypos<size;mypos++)
+{
+arr[mypos]=arr[mypos-1];
+}
+size--;
+System.out.println(Arrays.toString(arr));
+}
+}
+
+2)Linked list:
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    Node head;
+
+    void add(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+    }
+
+    void display() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        list.display();
+    }
+}
