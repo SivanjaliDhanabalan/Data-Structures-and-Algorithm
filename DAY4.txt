@@ -1,0 +1,153 @@
+1)Doubly Linked List:
+
+class Node {
+    int data;
+    Node prev;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+class DoublyLinkedList {
+    Node head;
+    public void addFront(int data) {
+        Node newNode = new Node(data);
+        if (head != null) {
+            head.prev = newNode;
+            newNode.next = head;
+        }
+        head = newNode;
+    }
+    public void addEnd(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        Node temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        temp.next = newNode;
+        newNode.prev = temp;
+    }
+    public void display() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+    public void removeFront() {
+        if (head != null) {
+            head = head.next;
+            if (head != null) {
+                head.prev = null;
+            }
+        }
+    }
+    public void removeEnd() {
+        if (head == null) return;
+        if (head.next == null) {
+            head = null;
+            return;
+        }
+        Node temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        temp.prev.next = null;
+    }
+}
+
+public class DoublyLinkedList {
+    public static void main(String[] args) {
+        DoublyLinkedList dll = new DoublyLinkedList();
+        dll.addFront(10);
+        dll.addEnd(20);
+        dll.addEnd(30);
+        System.out.println("Insertion of nodes:");
+        dll.display(); 
+
+        dll.removeFront();
+        System.out.println("Deleting the first node:");
+        dll.display(); 
+
+        dll.removeEnd();
+        System.out.println("Removing the end of the node:");
+        dll.display(); 
+    }
+}
+
+2)Making a copy of Doubly Linked List:
+
+class Node {
+    int data;
+    Node next;
+    Node prev;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+public class DoublyLinkedList{
+
+    public static Node copyDoublyLinkedList(Node head) {
+        if (head == null) {
+            return null;
+        }
+        java.util.HashMap<Node, Node> nodeMapping = new java.util.HashMap<>();
+        Node current = head;
+        while (current != null) {
+            nodeMapping.put(current, new Node(current.data));
+            current = current.next;
+        }
+        current = head;
+        while (current != null) {
+            Node copiedNode = nodeMapping.get(current);
+            if (current.next != null) {
+                copiedNode.next = nodeMapping.get(current.next);
+            }
+            if (current.prev != null) {
+                copiedNode.prev = nodeMapping.get(current.prev);
+            }
+            current = current.next;
+        }
+        return nodeMapping.get(head);
+    }
+
+    public static void main(String[] args) {
+        Node head = new Node(1);
+        Node second = new Node(2);
+        Node third = new Node(3);
+        
+        head.next = second;
+        second.prev = head;
+        second.next = third;
+        third.prev = second;
+        Node copiedHead = copyDoublyLinkedList(head);
+        System.out.println("Original list:");
+        printList(head);
+
+        System.out.println("Copied list:");
+        printList(copiedHead);
+    }
+
+    private static void printList(Node head) {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+}
+
